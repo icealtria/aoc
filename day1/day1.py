@@ -1,4 +1,9 @@
 f = open("input", "r")
-result = max([sum(map(int, i.split('\n')))
-             for i in f.read().strip().split('\n\n')])
-print(result)
+# part 1
+calories = [sum(map(int, i.split('\n')))
+             for i in f.read().strip().split('\n\n')]
+print(max(calories))
+
+# part 2
+
+print(sum(sorted(calories)[-3:]))
