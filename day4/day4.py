@@ -1,10 +1,5 @@
 import re
 
-content = open('input', 'r').read().strip()
-pattern = r'\d+'
-lst = list(map(int, re.findall(pattern, content)))
-
-assignments = [list(g) for g in zip(*[iter(lst)]*4)]
 
 
 def is_subset(a, b, x, y):
@@ -20,5 +15,9 @@ def overlap_count(a, b, x, y):
 
 
 if __name__ == '__main__':
+    content = open('input', 'r').read().strip()
+    pattern = r'\d+'
+    lst = list(map(int, re.findall(pattern, content)))
+    assignments = [list(g) for g in zip(*[iter(lst)]*4)]
     print(sum([is_subset(a, b, x, y) for a, b, x, y in assignments]))
     print(sum([overlap_count(a, b, x, y) for a, b, x, y in assignments]))
