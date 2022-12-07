@@ -1,5 +1,5 @@
 def find_distinct(s: str, n: int):
-    for i in range(len(s)):
+    for i in range(len(s)-n):
         if len(set(s[i:i+n])) == n:
             return (i+n)
 
