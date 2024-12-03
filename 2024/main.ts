@@ -4,7 +4,7 @@ if (!day) {
 }
 
 const command = new Deno.Command("deno", {
-  args: ["run", "--watch", `./day${day}/index.ts`],
+  args: ["run", "--watch", "--allow-read", `./day${day}/index.ts`],
 });
 
 const process = command.spawn();
