@@ -52,29 +52,13 @@ function getOriginalPath(start: Point, direction: Direction): Point[] {
 }
 
 function Part1(start: Point, direction: Direction): number {
-  const visited = new Set<string>();
-  let curr = start;
-
-  while (true) {
-    visited.add(curr.join(","));
-    const next = getNext(curr, direction);
-
-    if (!isInBounds(next)) {
-      return visited.size;
-    }
-
-    if (map[next[0]][next[1]] === '#') {
-      direction = nextDirection[direction];
-    } else {
-      curr = next;
-    }
-  }
+  const path = getOriginalPath(start, direction);
+  return path.reduce((count, [row, col]) => count.add(`${row},${col}`), new Set<string>()).size;
 }
 
 console.log("Part 1:", Part1(start, "^"));
 
-
-function willLoop(start: Point, direction: Direction, blockPos: Point, originalPath: Point[]): boolean {
+function willLoop(start: Point, direction: Direction, blockPos: Point): boolean {
   const visited = new Set<string>();
   let curr = start;
 
@@ -114,7 +98,7 @@ function Part2(): number {
     const key = `${row},${col}`;
     if (!seen.has(key) && map[row][col] === '.' && !(row === start[0] && col === start[1])) {
       seen.add(key);
-      if (willLoop(start, "^", [row, col], originalPath)) {
+      if (willLoop(start, "^", [row, col])) {
         count++;
       }
     }
