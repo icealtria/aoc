@@ -14,3 +14,11 @@ export class Counter<T> {
     return this.counts.get(item) || 0;
   }
 }
+
+export function exectime<T>(fn: Function, ...args: any[]): T {
+  const start = performance.now();
+  const result = fn(...args);
+  const end = performance.now();
+  console.log(`Execution time: ${end - start}ms`);
+  return result;
+}
